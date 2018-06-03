@@ -1,0 +1,4 @@
+---
+yum_baseurl: "http://192.168.122.104/media/"
+gpgkey_name: "RPM-GPG-KEY-CentOS-7"
+gpgkey: "file://{{ gpgdir }}/{{ gpgkey_name }}"

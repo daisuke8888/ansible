@@ -1,0 +1,15 @@
+---
+- name: /etc/securettyの内容を確認
+  shell: |
+    cat /etc/securetty
+  register: retval
+  changed_when: False
+
+- name: rootログインを許可?
+  lineinfile:
+    dest: /etc/securetty
+    line: "pts/0"
+    insertafter: EOF
+  when: retval.stdout not in "pts/0"
+  notify: serviceリスタート
+

@@ -1,0 +1,7 @@
+---
+service_stopped:
+  - firewalld
+  - NetworkManager
+
+service_started:
+  - telnet.socket

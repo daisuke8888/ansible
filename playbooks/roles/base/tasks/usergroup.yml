@@ -1,0 +1,27 @@
+---
+- name: グループ作成
+  group:
+    name: "{{ localuser.group.name }}"
+    gid: "{{ localuser.group.gid }}"
+
+- name: ユーザ作成
+  user:
+    name: "{{ localuser.user.name }}"
+    uid: "{{ localuser.user.uid }}"
+    state: present
+    password: "{{ localuser.user.password }}"
+
+- name: ユーザを他グループに追加
+  user:
+    name: "{{ localuser.user.name }}"
+    append: yes
+    groups: "{{ localuser.group.name }}"
+
+- name: ~/.ssh for users exist
+  file:
+    path: "/home/{{ localuser.user.name }}/.ssh"
+    state: directory
+    owner: "{{ localuser.user.name }}"
+    group: "{{ localuser.group.name }}"
+    mode: 0700
+

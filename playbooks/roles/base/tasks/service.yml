@@ -1,0 +1,17 @@
+---
+- name: サービスの停止
+  service:
+    name: "{{ item }}"
+    enabled: no
+    state: stopped
+  with_items:
+    - "{{ service_stopped }}"
+
+- name: サービスの開始
+  service:
+    name: "{{ item }}"
+    enabled: yes
+    state: started
+  with_items:
+    - "{{ service_started }}"
+

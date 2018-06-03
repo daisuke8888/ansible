@@ -1,0 +1,10 @@
+---
+localuser:
+  user:
+    name: hoge
+    uid: 4519
+    password: $6$hogehoge$z18Troop8UktfSy2LDJvEHYoXiNqCw8U0ZXBKleJ/l0WoAXVIRIO1lrDgm1e3Nx6OZCtklnKeA0S49/GvDU0W1
+
+  group:
+    name: hogegroup
+    gid: 4520

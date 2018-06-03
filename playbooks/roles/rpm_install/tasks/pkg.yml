@@ -1,0 +1,14 @@
+---
+- name: ymlfileコピー用のディレクトリを作成  
+  file:
+    path: /tmp/ansible/pkg
+    state: directory
+
+- name: install pkgfiles
+  include: install_pkglist.yml
+  with_items:
+    - "{{ test_pkglist }}"
+  loop_control:
+    loop_var: pkgdir_list
+
+  

@@ -1,0 +1,13 @@
+---
+- name: rpmパッケージがインストールされていないことを確認
+  shell: |
+    rpm -q {{ rpm_pkgname.stdout }}
+  changed_when: False
+  ignore_errors: yes
+  register: retval
+
+- name: rpmパッケージをインストール
+  shell: |
+    rpm -ivh "/tmp/ansible/pkg/{{ pkgdir_list }}/{{ rpm_pkgname.stdout }}.rpm"
+  when: retval | failed
+

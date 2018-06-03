@@ -1,0 +1,7 @@
+---
+test_pkglist:
+  - telnet
+  - telnet-server
+  - ftp
+  - ntp
+  - vsftpd

@@ -1,0 +1,10 @@
+---
+- name: serviceリスタート
+  service:
+    name: "{{ item }}"
+    state: restarted
+  with_items:
+    - "{{ service_started }}"
+
+- name: rebootハンドラ
+  include: reboot.yml

@@ -1,0 +1,6 @@
+---
+- name: OSの基本的な設定
+  hosts: all
+  roles:
+    - name: base
+  

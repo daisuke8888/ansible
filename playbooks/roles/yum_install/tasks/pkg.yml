@@ -1,0 +1,38 @@
+---
+- name: gpgkey配布先ディレクトリを作成
+  file:
+    path: "{{ gpgdir }}"
+    state: directory
+
+- name: gpgkeyをコピー
+  copy:
+    src: "{{ gpgkey_name }}"
+    dest: "{{ gpgdir }}"
+
+- name: delete yum repositories directory
+  file:
+    path: /etc/yum.repos.d/
+    state: absent
+
+- name: create yum repositories directory
+  file:
+    path: /etc/yum.repos.d/
+    state: directory
+
+- name: add yum repository
+  yum_repository:
+    name: dvd
+    description: rhel7 yum repository on dvd
+    baseurl: "{{ yum_baseurl }}"
+    enabled: yes
+    gpgcheck: yes
+    gpgkey: "{{ gpgkey }}"
+
+- name: install yum pkg
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - "{{ test_pkglist }}"
+
+

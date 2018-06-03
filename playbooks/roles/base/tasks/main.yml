@@ -1,0 +1,6 @@
+---
+- include: hostname.yml
+- include: usergroup.yml
+- include: service.yml
+- include: selinux.yml
+- include: telnet.yml

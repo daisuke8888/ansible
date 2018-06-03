@@ -1,0 +1,7 @@
+---
+- name: selinuxを無効化
+  selinux:
+    policy: targeted
+    #state: disabled
+    state: permissive
+  notify: rebootハンドラ

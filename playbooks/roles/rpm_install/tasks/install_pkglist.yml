@@ -1,0 +1,20 @@
+---
+- name: copy yumpackages
+  copy:
+    src: pkg/{{ pkgdir_list }}
+    dest: /tmp/ansible/pkg/
+
+- name: rpmfile名を拡張子抜きで抽出
+  shell: |
+    basename {{ item }} .rpm
+  with_fileglob:
+    - "pkg/{{ pkgdir_list }}/*.rpm"
+  register: rpmfile
+  changed_when: False
+
+- name: install package
+  include: rpm-ivh_item-stdout.yml
+  with_items:
+    - "{{ rpmfile.results }}"
+  loop_control:
+    loop_var: rpm_pkgname
